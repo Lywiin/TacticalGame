@@ -26,7 +26,6 @@ public class GameController : MonoBehaviour {
     public float rockHeightMin = 0.7f;
 
     public enum ModesEnum { NONE, MOVEMENT, ATTACK };
-    public Color[] selectColor; //0 = white, 1 = green, 2 = red, 3 = blue
 
     /***PRIVATE VARIABLES***/
     private GameObject selectedBlock = null;
@@ -199,7 +198,7 @@ public class GameController : MonoBehaviour {
         else
         {
             mode = ModesEnum.MOVEMENT;
-            //selectedBlock.GetComponent<BlockBehavior>().UpdateSelectColor();
+            selectedBlock.GetComponent<BlockBehavior>().UpdateSelectColor();
             DeselectBlockNeighbors(selectedBlock);
             SelectBlockNeighbors(selectedBlock, selectedUnit.GetComponent<Unit>().GetMovePoints(), true);
         }
@@ -218,7 +217,7 @@ public class GameController : MonoBehaviour {
         else
         {
             mode = ModesEnum.ATTACK;
-            //selectedBlock.GetComponent<BlockBehavior>().UpdateSelectColor();
+            selectedBlock.GetComponent<BlockBehavior>().UpdateSelectColor();
             DeselectBlockNeighbors(selectedBlock);
             selectedUnit.GetComponent<Unit>().SelectAttackBlocks(true);
         }

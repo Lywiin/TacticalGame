@@ -73,11 +73,11 @@ public class BlockBehavior : MonoBehaviour {
 
         if (b)
         {
-            //UpdateSelectColor();          //SET COLOR CASSE LES DRAW CALLS
+            UpdateSelectColor();          //SET COLOR CASSE LES DRAW CALLS
         }
         else
         {
-            //select.GetComponent<Renderer>().material.SetColor("_Color", gameController.selectColor[0]);
+            select.GetComponent<Renderer>().material = gameController.selectMaterials[0];
             SetWeight(0);
         }
     }
@@ -87,16 +87,16 @@ public class BlockBehavior : MonoBehaviour {
         switch (gameController.GetMode())
         {
             case GameController.ModesEnum.NONE:
-                select.GetComponent<Renderer>().material.SetColor("_Color", gameController.selectColor[0]);
+                select.GetComponent<Renderer>().material = gameController.selectMaterials[0];
                 break;
             case GameController.ModesEnum.MOVEMENT:
                 if (!canMoveOn)
                 {
-                    select.GetComponent<Renderer>().material.SetColor("_Color", gameController.selectColor[2]);
+                    select.GetComponent<Renderer>().material = gameController.selectMaterials[2];
                 }
                 else if (gameController.GetSelectedBlock() == transform.gameObject)
                 {
-                    select.GetComponent<Renderer>().material.SetColor("_Color", gameController.selectColor[1]);
+                    select.GetComponent<Renderer>().material = gameController.selectMaterials[1];
                 }
                 break;
             case GameController.ModesEnum.ATTACK:
@@ -105,15 +105,15 @@ public class BlockBehavior : MonoBehaviour {
                     
                     if (gameController.GetSelectedBlock() == transform.gameObject)
                     {
-                        select.GetComponent<Renderer>().material.SetColor("_Color", gameController.selectColor[1]);
+                        select.GetComponent<Renderer>().material = gameController.selectMaterials[1];
                     }
                     else if (GetUnitOnBlock() && GetUnitOnBlock().tag == gameController.GetSelectedUnit().tag)
                     {
-                        select.GetComponent<Renderer>().material.SetColor("_Color", gameController.selectColor[3]);
+                        select.GetComponent<Renderer>().material = gameController.selectMaterials[3];
                     }
                     else
                     {
-                        select.GetComponent<Renderer>().material.SetColor("_Color", gameController.selectColor[2]);
+                        select.GetComponent<Renderer>().material = gameController.selectMaterials[2];
                     }
                 }
                 break;
